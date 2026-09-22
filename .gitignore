@@ -1,0 +1,14 @@
+# Secrets
+.env
+.Renviron
+
+# Raw scraped data (regenerate locally via scripts/00_*.R) and R build artifacts
+**/data/
+catboost_info/
+.Rhistory
+debug_login.html
+debug_schedule_*.html
+
+# OS
+.DS_Store
+Thumbs.db

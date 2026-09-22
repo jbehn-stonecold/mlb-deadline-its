@@ -1,0 +1,275 @@
+"model","feature","mean_abs_shap"
+"Runs Scored","opp_cum_win_rate",0.11080281161125
+"Runs Scored","opp_cum_ER_per_game",0.0802156012978161
+"Runs Scored","Opp",0.0679666214798325
+"Runs Scored","opp_cum_ERA",0.0553728070368811
+"Runs Scored","Team",0.0400212931994554
+"Runs Scored","cum_XBH_per_game",0.0382700038232419
+"Runs Scored","opp_roll_SO_pit_pg",0.0372945791372745
+"Runs Scored","opp_cum_HBP_pit_pg",0.0367640061012727
+"Runs Scored","cum_OBP",0.0346908738975752
+"Runs Scored","cum_win_rate",0.0323132513130584
+"Runs Scored","cum_R_per_game",0.030109517019555
+"Runs Scored","opp_starter_ERA",0.0291717221640129
+"Runs Scored","opp_cum_BB_allowed_pg",0.0274735565008611
+"Runs Scored","second_half_game_num",0.0274444787687602
+"Runs Scored","cum_run_diff_pg",0.0263453081642667
+"Runs Scored","cum_SLG",0.0248642844554321
+"Runs Scored","cum_OPS",0.0245311096742915
+"Runs Scored","opp_bullpen_IP_total",0.0234097219190402
+"Runs Scored","opp_starter_IP_per_game",0.0229752446621458
+"Runs Scored","roll_BB_per_game",0.0220112258838839
+"Runs Scored","opp_bullpen_ERA",0.0206618877606353
+"Runs Scored","cum_RBI_per_game",0.019931616836272
+"Runs Scored","cum_HR_per_game",0.0198874178986708
+"Runs Scored","roll_OBP",0.0198178743996511
+"Runs Scored","opp_slope_ERA",0.0174589794419324
+"Runs Scored","opp_cum_SO_pit_pg",0.0173752561308679
+"Runs Scored","cum_BB_per_game",0.0171869507496024
+"Runs Scored","opp_roll_BB_allowed_pg",0.0169497594252049
+"Runs Scored","opp_cum_WP_per_game",0.0156489209054563
+"Runs Scored","opp_roll_ERA",0.0156454133650222
+"Runs Scored","cum_RE24_bat",0.0156391691128765
+"Runs Scored","roll_HR_per_game",0.0142764193934119
+"Runs Scored","roll_R_per_game",0.0131798489156776
+"Runs Scored","opp_cum_HR_allowed_pg",0.0118593525260861
+"Runs Scored","opp_starter_pct_IP",0.0118081694941938
+"Runs Scored","opp_starter_IP_total",0.010797995932035
+"Runs Scored","opp_bullpen_IP_per_game",0.0098480578799116
+"Runs Scored","q25_RA_per_game",0.00941027975047532
+"Runs Scored","q75_run_diff",0.0089853287131466
+"Runs Scored","opp_cum_H_allowed_pg",0.00890571208728724
+"Runs Scored","n_pre_games",0.0086724482502975
+"Runs Scored","cum_BA",0.00835211686802814
+"Runs Scored","cv_run_diff",0.00810122912610923
+"Runs Scored","roll_SLG",0.00766133648551537
+"Runs Scored","q25_run_diff",0.00746652760348914
+"Runs Scored","q25_R_per_game",0.00707728908406672
+"Runs Scored","roll_SO_per_game",0.00674186310618517
+"Runs Scored","cum_LOB_per_game",0.00608952681919336
+"Runs Scored","cum_SB_per_game",0.00604872302571707
+"Runs Scored","cum_SO_per_game",0.00565152094327228
+"Runs Scored","slope_run_diff",0.00530300523076781
+"Runs Scored","cum_H_per_game",0.0052069701846685
+"Runs Scored","slope_OPS",0.00501990988606141
+"Runs Scored","roll_OPS",0.00484118295728109
+"Runs Scored","iqr_R_per_game",0.00465289099015501
+"Runs Scored","iqr_run_diff",0.00424213825435676
+"Runs Scored","q75_RA_per_game",0.00407257514145464
+"Runs Scored","slope_R_per_game",0.0040376520038814
+"Runs Scored","iqr_RA_per_game",0.00385601721835274
+"Runs Scored","q75_R_per_game",0.0038062651594961
+"Runs Scored","roll_run_diff_pg",0.00374227160330854
+"Runs Scored","roll_win_rate",0.00307504893532359
+"Runs Scored","slope_win_rate",0.00295690854323048
+"Runs Scored","is_home",0
+"Runs Scored","is_shortened_season",0
+"Runs Allowed","cum_win_rate",0.0978690100852224
+"Runs Allowed","Team",0.0616712411712544
+"Runs Allowed","opp_cum_OPS",0.0614617193610911
+"Runs Allowed","cum_ER_per_game",0.0520043522188432
+"Runs Allowed","cum_ERA",0.0496152473070165
+"Runs Allowed","cum_RA_per_game",0.0404362247984975
+"Runs Allowed","cum_BB_allowed_pg",0.0348126352451691
+"Runs Allowed","opp_cum_R_per_game",0.0347156707109284
+"Runs Allowed","opp_cum_XBH_per_game",0.0334678255366209
+"Runs Allowed","opp_cum_run_diff_pg",0.0306202632516502
+"Runs Allowed","opp_roll_BB_per_game",0.0278138237173962
+"Runs Allowed","roll_SO_pit_pg",0.0272221211423044
+"Runs Allowed","Opp",0.0238247817863028
+"Runs Allowed","second_half_game_num",0.0236081799629332
+"Runs Allowed","roll_BB_allowed_pg",0.0224238493594332
+"Runs Allowed","opp_cum_win_rate",0.022359676182121
+"Runs Allowed","starter_ERA",0.0215566412812201
+"Runs Allowed","bullpen_IP_total",0.0182882231493321
+"Runs Allowed","opp_cum_SLG",0.0177835612284256
+"Runs Allowed","opp_cum_RBI_per_game",0.0167342448048302
+"Runs Allowed","opp_q25_R_per_game",0.0160840813668372
+"Runs Allowed","cum_SO_pit_pg",0.0149528608011743
+"Runs Allowed","slope_win_rate",0.0149156503516824
+"Runs Allowed","cum_HBP_pit_pg",0.0144721895440253
+"Runs Allowed","opp_cum_OBP",0.0137326812508259
+"Runs Allowed","opp_q25_RA_per_game",0.0130443902680086
+"Runs Allowed","cum_WP_per_game",0.0129095035895629
+"Runs Allowed","roll_run_diff_pg",0.0125765371433703
+"Runs Allowed","roll_win_rate",0.0122344718585096
+"Runs Allowed","opp_roll_R_per_game",0.0122123289905331
+"Runs Allowed","opp_roll_OBP",0.0119879903925515
+"Runs Allowed","opp_cum_BB_per_game",0.0113515336564423
+"Runs Allowed","slope_ERA",0.0101973296819232
+"Runs Allowed","starter_IP_per_game",0.0100789084424195
+"Runs Allowed","opp_cum_HR_per_game",0.00989001830869065
+"Runs Allowed","cum_HR_allowed_pg",0.00917611379267121
+"Runs Allowed","starter_IP_total",0.00893317640492878
+"Runs Allowed","opp_roll_SO_per_game",0.0084976826199644
+"Runs Allowed","bullpen_ERA",0.00812060190293702
+"Runs Allowed","opp_cum_BA",0.00805705234397346
+"Runs Allowed","opp_cum_RE24_bat",0.00778622401400353
+"Runs Allowed","q25_RA_per_game",0.00638910003915147
+"Runs Allowed","opp_iqr_RA_per_game",0.00631669074974929
+"Runs Allowed","opp_cum_SO_per_game",0.00626713509050974
+"Runs Allowed","opp_roll_SLG",0.00617737900050081
+"Runs Allowed","opp_roll_HR_per_game",0.006066629429433
+"Runs Allowed","opp_q25_run_diff",0.00603069938407083
+"Runs Allowed","cum_H_allowed_pg",0.00573015792432375
+"Runs Allowed","roll_RA_per_game",0.00539086356387269
+"Runs Allowed","opp_slope_run_diff",0.005351768653716
+"Runs Allowed","q25_run_diff",0.00520055197272233
+"Runs Allowed","opp_roll_win_rate",0.0051762792624883
+"Runs Allowed","opp_cv_run_diff",0.00516703143662635
+"Runs Allowed","opp_cum_LOB_per_game",0.00499733723892086
+"Runs Allowed","roll_ERA",0.00425486517233431
+"Runs Allowed","bullpen_IP_per_game",0.00424176534998354
+"Runs Allowed","opp_q75_RA_per_game",0.00398690704836708
+"Runs Allowed","cum_run_diff_pg",0.00390261072394729
+"Runs Allowed","cv_run_diff",0.0038376577280876
+"Runs Allowed","opp_cum_SB_per_game",0.00374946178087447
+"Runs Allowed","n_pre_games",0.00361032055959309
+"Runs Allowed","opp_cum_H_per_game",0.00357507562107381
+"Runs Allowed","starter_pct_IP",0.00350037720066246
+"Runs Allowed","iqr_RA_per_game",0.00316682824243865
+"Runs Allowed","opp_slope_R_per_game",0.00290051484264866
+"Runs Allowed","opp_slope_win_rate",0.00276469255748096
+"Runs Allowed","opp_roll_OPS",0.00270987627701385
+"Runs Allowed","opp_slope_OPS",0.00230667201855488
+"Runs Allowed","q75_RA_per_game",0.00229991731064256
+"Runs Allowed","opp_q75_run_diff",0.00228551665176018
+"Runs Allowed","slope_run_diff",0.0022442626474745
+"Runs Allowed","opp_q75_R_per_game",0.00216435926925948
+"Runs Allowed","opp_iqr_run_diff",0.00179763627470536
+"Runs Allowed","opp_roll_run_diff_pg",0.00139426278750017
+"Runs Allowed","iqr_run_diff",0.00105657678245643
+"Runs Allowed","opp_iqr_R_per_game",0.000539150686500145
+"Runs Allowed","is_home",0
+"Runs Allowed","is_shortened_season",0
+"Runs Allowed","q75_run_diff",0
+"Win/Loss","cum_win_rate",0.103538774351368
+"Win/Loss","opp_cum_win_rate",0.0959859395070805
+"Win/Loss","opp_cum_run_diff_pg",0.0489126125593969
+"Win/Loss","cum_run_diff_pg",0.0306343149218297
+"Win/Loss","cum_OBP",0.0216515961089676
+"Win/Loss","opp_roll_BB_per_game",0.0186137252647742
+"Win/Loss","opp_cum_RA_per_game",0.0176705656901769
+"Win/Loss","roll_BB_per_game",0.0149651870133575
+"Win/Loss","cum_BB_allowed_pg",0.0119713158718465
+"Win/Loss","cum_RA_per_game",0.0119357752500618
+"Win/Loss","cum_BB_per_game",0.0113585257475377
+"Win/Loss","cum_ER_per_game",0.0106821131506722
+"Win/Loss","q75_run_diff",0.0103448506325771
+"Win/Loss","opp_bullpen_ERA",0.00989237774564108
+"Win/Loss","opp_cum_BB_allowed_pg",0.00977147563096465
+"Win/Loss","opp_cum_OBP",0.00965601814007526
+"Win/Loss","opp_roll_OBP",0.00946267603700156
+"Win/Loss","opp_q25_RA_per_game",0.00923016428957288
+"Win/Loss","opp_cum_SO_pit_pg",0.00892337163760625
+"Win/Loss","roll_ERA",0.00767261776896882
+"Win/Loss","opp_roll_RA_per_game",0.00725469006944923
+"Win/Loss","cum_H_allowed_pg",0.00697812276053808
+"Win/Loss","Opp",0.00685877895744537
+"Win/Loss","roll_RA_per_game",0.00656368493368667
+"Win/Loss","opp_roll_SO_pit_pg",0.00651121688105304
+"Win/Loss","opp_cum_BB_per_game",0.00620919383139088
+"Win/Loss","cum_ERA",0.00614296424582038
+"Win/Loss","opp_slope_OPS",0.00609793493162489
+"Win/Loss","opp_roll_win_rate",0.00589907904394947
+"Win/Loss","opp_roll_SO_per_game",0.00560895966542864
+"Win/Loss","slope_R_per_game",0.00552077872674884
+"Win/Loss","opp_cum_HR_per_game",0.00530294687010403
+"Win/Loss","opp_cum_RE24_bat",0.00527969436740059
+"Win/Loss","opp_slope_R_per_game",0.00490307385535853
+"Win/Loss","opp_q75_run_diff",0.00478496050131908
+"Win/Loss","opp_cum_WPA_bat",0.00469248239277964
+"Win/Loss","cum_SO_pit_pg",0.0044335255503545
+"Win/Loss","opp_roll_HR_per_game",0.0044240922019018
+"Win/Loss","Team",0.00408204884832145
+"Win/Loss","roll_OBP",0.00405807039381169
+"Win/Loss","opp_bullpen_IP_per_game",0.00402481973386531
+"Win/Loss","starter_IP_total",0.00390431660043475
+"Win/Loss","opp_cum_HBP_pit_pg",0.00376279723970792
+"Win/Loss","slope_OPS",0.00375332903023756
+"Win/Loss","roll_R_per_game",0.00375043539211947
+"Win/Loss","opp_cum_ER_per_game",0.00374630159109341
+"Win/Loss","opp_cum_WP_per_game",0.00360873899983949
+"Win/Loss","opp_roll_ERA",0.00355757268099315
+"Win/Loss","q25_run_diff",0.00353547006747659
+"Win/Loss","opp_cum_LOB_per_game",0.00349890462914417
+"Win/Loss","roll_SO_pit_pg",0.00345688846893771
+"Win/Loss","bullpen_IP_per_game",0.00340064531694101
+"Win/Loss","starter_IP_per_game",0.00331198657324384
+"Win/Loss","opp_starter_ERA",0.00324925016083243
+"Win/Loss","cum_OPS",0.0031679415646063
+"Win/Loss","q25_RA_per_game",0.00312567352897503
+"Win/Loss","q25_R_per_game",0.00311448771477894
+"Win/Loss","opp_cv_run_diff",0.00300391880643468
+"Win/Loss","roll_BB_allowed_pg",0.00298768648013874
+"Win/Loss","opp_bullpen_IP_total",0.00297339668934676
+"Win/Loss","opp_cum_XBH_per_game",0.00285613550869936
+"Win/Loss","opp_roll_R_per_game",0.00282466449371194
+"Win/Loss","opp_roll_OPS",0.00264654961226161
+"Win/Loss","opp_roll_BB_allowed_pg",0.00253012413835819
+"Win/Loss","cum_SLG",0.00250962540743131
+"Win/Loss","cum_WP_per_game",0.00249907833029446
+"Win/Loss","opp_cum_SB_per_game",0.00248083823454767
+"Win/Loss","roll_SLG",0.00237924878754221
+"Win/Loss","cum_HR_per_game",0.00234175119761469
+"Win/Loss","roll_OPS",0.0023247687946739
+"Win/Loss","slope_RA_per_game",0.0023131103556241
+"Win/Loss","opp_cum_ERA",0.00229505061881528
+"Win/Loss","slope_run_diff",0.00229419460890494
+"Win/Loss","slope_win_rate",0.00224409081449295
+"Win/Loss","cum_BA",0.0022017661122509
+"Win/Loss","opp_starter_IP_total",0.00205484713031786
+"Win/Loss","cum_LOB_per_game",0.00196810247515946
+"Win/Loss","n_pre_games",0.00163692137596957
+"Win/Loss","starter_pct_IP",0.00163323788879077
+"Win/Loss","cum_XBH_per_game",0.0015671469022495
+"Win/Loss","cum_HBP_pit_pg",0.00156635976428251
+"Win/Loss","opp_slope_ERA",0.00156584547545195
+"Win/Loss","cum_SB_per_game",0.00155003809795254
+"Win/Loss","roll_SO_per_game",0.00150685322345209
+"Win/Loss","cum_HR_allowed_pg",0.00148844309332994
+"Win/Loss","iqr_R_per_game",0.00140640514411156
+"Win/Loss","opp_iqr_R_per_game",0.00137736966101245
+"Win/Loss","bullpen_ERA",0.00137612079488201
+"Win/Loss","opp_starter_IP_per_game",0.00137569618625285
+"Win/Loss","cum_H_per_game",0.00130267133743591
+"Win/Loss","slope_ERA",0.00126087736210305
+"Win/Loss","opp_cum_H_allowed_pg",0.0012244698024942
+"Win/Loss","opp_iqr_RA_per_game",0.0011381649899095
+"Win/Loss","opp_cum_OPS",0.00110617629751312
+"Win/Loss","opp_cum_HR_allowed_pg",0.00110453112269745
+"Win/Loss","opp_roll_run_diff_pg",0.00110227329145873
+"Win/Loss","starter_ERA",0.00108517857201556
+"Win/Loss","opp_slope_RA_per_game",0.000970326304982426
+"Win/Loss","opp_q75_R_per_game",0.000961069227337297
+"Win/Loss","opp_slope_run_diff",0.000946815769846922
+"Win/Loss","opp_cum_H_per_game",0.000931421451390184
+"Win/Loss","opp_cum_R_per_game",0.000885262903524781
+"Win/Loss","cum_WPA_bat",0.000877850455286349
+"Win/Loss","roll_HR_per_game",0.000712090106942667
+"Win/Loss","opp_cum_RBI_per_game",0.000658044540247978
+"Win/Loss","second_half_game_num",0.000584260837503223
+"Win/Loss","iqr_run_diff",0.0005336144970559
+"Win/Loss","bullpen_IP_total",0.000484426731979527
+"Win/Loss","cum_RE24_bat",0.000400299690180212
+"Win/Loss","opp_q75_RA_per_game",0.000398374533285974
+"Win/Loss","opp_q25_R_per_game",0.000244202943208465
+"Win/Loss","opp_roll_SLG",0.000216545503218499
+"Win/Loss","roll_run_diff_pg",0.000205231267156238
+"Win/Loss","q75_RA_per_game",0.0001154118030649
+"Win/Loss","is_shortened_season",7.07449732206723e-05
+"Win/Loss","is_home",0
+"Win/Loss","cum_R_per_game",0
+"Win/Loss","cum_SO_per_game",0
+"Win/Loss","cum_RBI_per_game",0
+"Win/Loss","cv_run_diff",0
+"Win/Loss","q75_R_per_game",0
+"Win/Loss","iqr_RA_per_game",0
+"Win/Loss","roll_win_rate",0
+"Win/Loss","opp_cum_SO_per_game",0
+"Win/Loss","opp_cum_SLG",0
+"Win/Loss","opp_cum_BA",0
+"Win/Loss","opp_q25_run_diff",0
+"Win/Loss","opp_iqr_run_diff",0
+"Win/Loss","opp_slope_win_rate",0
+"Win/Loss","opp_starter_pct_IP",0

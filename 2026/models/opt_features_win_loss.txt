@@ -1,0 +1,15 @@
+cum_win_rate
+opp_cum_win_rate
+opp_cum_run_diff_pg
+cum_run_diff_pg
+cum_OBP
+opp_roll_BB_per_game
+opp_cum_RA_per_game
+roll_BB_per_game
+cum_BB_allowed_pg
+cum_RA_per_game
+cum_BB_per_game
+cum_ER_per_game
+q75_run_diff
+opp_bullpen_ERA
+opp_cum_BB_allowed_pg
