@@ -1,76 +1,85 @@
 library(dplyr)
-library(catboost)
 
-# 0. LOAD DATA
+#  SCORE THE 2026 TRADE-DEADLINE PROJECTIONS AGAINST ACTUAL RESULTS
+#
+#  Uses the per-game predictions saved at the Aug 3 deadline by
+#  11_build_and_predict_2026_schedule.R (the ones behind the charts in
+#  ../predictions/) — the models are NOT re-run here, so this scores exactly
+#  what was projected at the deadline.
+#
+#  Each actual post-deadline game is matched to its saved prediction on
+#  Team + Date + Opp (+ doubleheader order). Games postponed after the
+#  deadline and made up on a different date are matched to the earliest
+#  unused scheduled game between the same two teams. Scheduled games
+#  that were never played (e.g. the placeholder "makeup" games 11b added on
+#  Sep 28, or a cancelled game) are listed and left out.
+#
+#  Input:  ../outputs/schedule_predictions_2026_game_level.csv (deadline predictions)
+#          ../data/model_features.csv (actual 2026 post-deadline results)
+#  Output: ../outputs/predictions_2026_game_level.csv
+#          ../outputs/predictions_2026_team_summary.csv
+
+# 0. LOAD ACTUAL POST-DEADLINE RESULTS
 df      <- read.csv("../data/model_features.csv", stringsAsFactors = FALSE)
 df$Date <- as.Date(df$Date)
-cat("Loaded model_features.csv:", nrow(df), "rows\n")
 
-pred_df <- df %>% filter(Season == 2026)
-cat("2026 post-deadline rows:", nrow(pred_df), "\n")
-cat("Teams:", length(unique(pred_df$Team)), "\n")
+actual <- df %>%
+  filter(Season == 2026) %>%
+  arrange(Team, Date) %>%
+  group_by(Team, Date, Opp) %>% mutate(dh = row_number()) %>% ungroup() %>%
+  mutate(.row = row_number())
+cat("2026 post-deadline games played (team rows):", nrow(actual), "\n")
 
-# 1. LOAD MODELS
-model_rs <- catboost.load_model("../models/model_runs_scored.cbm")
-model_ra <- catboost.load_model("../models/model_runs_allowed.cbm")
-model_wl <- catboost.load_model("../models/model_win_loss.cbm")
+# 1. LOAD SAVED DEADLINE PREDICTIONS
+saved <- read.csv("../outputs/schedule_predictions_2026_game_level.csv", stringsAsFactors = FALSE) %>%
+  mutate(Date = as.Date(Date)) %>%
+  arrange(Team, Date) %>%
+  group_by(Team, Date, Opp) %>% mutate(dh = row_number()) %>% ungroup() %>%
+  mutate(.srow = row_number()) %>%
+  select(.srow, Team, Date, Opp, dh, is_home,
+         pred_runs_scored, pred_runs_allowed, pred_win_prob)
+cat("Saved deadline predictions (team rows):", nrow(saved), "\n")
 
-# ── 2. FEATURE COLUMNS ────────────────────────────────────────────────────────
-# RS and RA use SHAP-selected ordered feature lists from optimization run.
-# Team and Opp are handled as categoricals — NOT appended separately.
-# WL uses full feature set minus id and target columns.
-id_cols     <- c("Team", "Season", "Date", "Opp")
-target_cols <- c("runs_scored", "runs_allowed", "win")
+# 2. MATCH EACH PLAYED GAME TO ITS SAVED PREDICTION
+# Pass 1: same Team, Date, Opp and doubleheader order
+match1 <- actual %>%
+  select(.row, Team, Date, Opp, dh) %>%
+  inner_join(saved %>% select(.srow, Team, Date, Opp, dh), by = c("Team", "Date", "Opp", "dh"))
 
-feat_cols_rs <- readLines("../models/opt_features_runs_scored.txt")
-feat_cols_ra <- readLines("../models/opt_features_runs_allowed.txt")
-feat_cols_wl <- readLines("../models/opt_features_win_loss.txt")
-feat_cols_wl <- feat_cols_wl[feat_cols_wl %in% names(df)]
-
-cat("RS features:", length(feat_cols_rs),
-    "| RA features:", length(feat_cols_ra),
-    "| WL features:", length(feat_cols_wl), "\n")
-
-# ── 3. HELPERS ────────────────────────────────────────────────────────────────
-make_pool_with_cats <- function(data, target_col, feat_cols, cat_cols) {
-  # feat_cols does NOT include cat_cols — append them for pool building
-  all_cols <- c(feat_cols, cat_cols)
-  X <- data[, all_cols]
-  y <- data[[target_col]]
-  for (col in cat_cols) X[[col]] <- as.factor(X[[col]])
-  catboost.load_pool(data = X, label = y)
+# Pass 2: rescheduled games — earliest unused saved game between the same
+# two teams (is_home in model_features.csv is always 0, so it can't be used)
+left_act   <- actual %>% filter(!.row %in% match1$.row) %>% arrange(Date)
+used_srows <- match1$.srow
+match2 <- list()
+for (i in seq_len(nrow(left_act))) {
+  a <- left_act[i, ]
+  cand <- saved %>%
+    filter(Team == a$Team, Opp == a$Opp, !.srow %in% used_srows) %>%
+    arrange(Date)
+  if (nrow(cand) == 0) stop(sprintf("No saved prediction for %s vs %s on %s", a$Team, a$Opp, a$Date))
+  used_srows <- c(used_srows, cand$.srow[1])
+  match2[[i]] <- data.frame(.row = a$.row, .srow = cand$.srow[1])
+  cat(sprintf("  Rescheduled: %s vs %s played %s, matched to deadline game scheduled %s\n",
+              a$Team, a$Opp, a$Date, cand$Date[1]))
 }
+matches <- bind_rows(match1 %>% select(.row, .srow), bind_rows(match2))
+stopifnot(!anyDuplicated(matches$.row), !anyDuplicated(matches$.srow))
 
-make_pool_no_cats <- function(data, target_col, feat_cols) {
-  # feat_cols already in correct order, no cats to append
-  X <- data[, feat_cols]
-  y <- data[[target_col]]
-  X[["Team"]] <- as.factor(X[["Team"]])
-  X[["Opp"]]  <- as.factor(X[["Opp"]])
-  cat_idx <- which(names(X) %in% c("Team", "Opp")) - 1L
-  catboost.load_pool(data = X, label = y,
-                     cat_features = cat_idx)
-}
+unplayed <- saved %>% filter(!.srow %in% matches$.srow)
+cat(sprintf("Scheduled at the deadline but never played (team rows): %d\n", nrow(unplayed)))
+if (nrow(unplayed) > 0) print(as.data.frame(unplayed %>% select(Team, Date, Opp)), row.names = FALSE)
 
-logit_to_prob <- function(x) 1 / (1 + exp(-x))
+pred_df <- actual %>%
+  inner_join(matches, by = ".row") %>%
+  inner_join(saved %>% select(.srow, pred_runs_scored, pred_runs_allowed, pred_win_prob), by = ".srow") %>%
+  select(-.row, -.srow, -dh) %>%
+  arrange(Team, Date)
+stopifnot(nrow(pred_df) == nrow(actual))
+
 pyth_win_prob <- function(rs, ra, exp = 1.83) rs^exp / (rs^exp + ra^exp)
 
-# 4. GAME-LEVEL PREDICTIONS
-
-# RS and RA: features from text files don't include Team/Opp so append them
-pool_rs <- make_pool_with_cats(pred_df, "runs_scored",  feat_cols_rs, c("Team","Opp"))
-pool_ra <- make_pool_with_cats(pred_df, "runs_allowed", feat_cols_ra, c("Team","Opp"))
-
-# WL: full feature set which already includes Team and Opp via feat_cols_wl
-pool_wl <- make_pool_with_cats(pred_df, "win", 
-                                feat_cols_wl[!feat_cols_wl %in% c("Team","Opp")],
-                                c("Team","Opp"))
-
-pred_df$pred_runs_scored  <- catboost.predict(model_rs, pool_rs)
-pred_df$pred_runs_allowed <- catboost.predict(model_ra, pool_ra)
-pred_df$pred_win_prob     <- logit_to_prob(catboost.predict(model_wl, pool_wl))
-pred_df$pred_win          <- as.integer(pred_df$pred_win_prob >= 0.5)
-pred_df$pred_win_rd       <- as.integer(pred_df$pred_runs_scored > pred_df$pred_runs_allowed)
+pred_df$pred_win    <- as.integer(pred_df$pred_win_prob >= 0.5)
+pred_df$pred_win_rd <- as.integer(pred_df$pred_runs_scored > pred_df$pred_runs_allowed)
 
 cat(sprintf("\nRD vs W/L agreement: %d / %d games (%.1f%%)\n",
             sum(pred_df$pred_win == pred_df$pred_win_rd, na.rm = TRUE),
@@ -80,12 +89,9 @@ cat(sprintf("\nRD vs W/L agreement: %d / %d games (%.1f%%)\n",
 # 5. AGGREGATE TO TEAM TOTALS
 
 # RMSE from held-out test set — used to compute intervals
-# TODO: replace with this cycle's actual 2025 test-set RMSE from
-# 02b_test_results.csv once 02b_direct_retrain has been re-run on the
-# shifted split. Values below are carried over from the prior (2024 test)
-# cycle as placeholders and should NOT be trusted for real intervals.
-RMSE_RS <- 3.0524
-RMSE_RA <- 3.0535
+# From 02b_test_results.csv (2025 held-out season, n = 1590 games)
+RMSE_RS <- 3.2059
+RMSE_RA <- 3.2074
 
 # Z-scores for 90%, 95%, 99% confidence intervals
 Z90 <- 1.645

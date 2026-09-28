@@ -5,7 +5,7 @@ An R / CatBoost pipeline that predicts MLB game and season outcomes (runs scored
 The repo is split by season:
 
 - **[`2025/`](2025/)** — the completed analysis: full pipeline (scrape → feature engineering → training/tuning → prediction → validation), final results, and the class presentation.
-- **[`2026/`](2026/)** — the current, in-progress season: the pipeline has been rebuilt with a more disciplined numbering scheme and additional validation steps, and is being used to track the 2026 season live. Post-deadline predictions are included; second-half validation is still pending.
+- **[`2026/`](2026/)** — the second completed season: the pipeline rebuilt with a more disciplined numbering scheme and additional validation steps, used to track 2026 live and then scored against actual second-half results.
 
 ## Method (applies to both seasons)
 

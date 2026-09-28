@@ -174,7 +174,7 @@ legend_text <- paste0(
 )
 
 p_legend <- ggplot() +
-  annotate("text", x = 0.08, y = 0.5,
+  annotate("text", x = 0.05, y = 0.5,
            label = legend_text,
            hjust = 0, vjust = 0.5,
            size = 3.1, color = "#333333",
@@ -189,7 +189,7 @@ p_legend <- ggplot() +
 
 # COMBINE
 final <- (p_wins | p_rs | p_ra | p_legend) +
-  plot_layout(widths = c(1.2, 1, 1, 0.45)) +
+  plot_layout(widths = c(1.2, 1, 1, 0.55)) +
   plot_annotation(
     title    = "2026 MLB Trade Deadline Impact — Second Half vs Historical Projection",
     subtitle = "Green = outperformed projection  |  Red = underperformed  |  Ordered by wins above expectation",

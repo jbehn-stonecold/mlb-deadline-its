@@ -45,7 +45,7 @@ p <- ggplot(df, aes(x = pct_off, y = Team, fill = direction)) +
   # Average line
   geom_vline(xintercept = mean_pct, color = col_avg,
              linewidth = 0.8, linetype = "dashed") +
-  annotate("text", x = mean_pct + 0.3, y = 31,
+  annotate("text", x = mean_pct + 0.3, y = nrow(df) + 0.8,
            label = sprintf("Avg: %.1f%%", mean_pct),
            color = col_avg, size = 3.2, hjust = 0, fontface = "bold") +
 
@@ -67,6 +67,7 @@ p <- ggplot(df, aes(x = pct_off, y = Team, fill = direction)) +
                 "fell short" = "Team fell short of projection",
                 "exact"     = "Exact match")
   ) +
+  coord_cartesian(clip = "off") +
   scale_x_continuous(
     limits = c(0, 18),
     breaks = seq(0, 16, by = 2),

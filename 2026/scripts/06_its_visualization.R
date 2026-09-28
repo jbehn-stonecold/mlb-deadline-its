@@ -44,16 +44,22 @@ rev_map <- setNames(names(abbrev_map), abbrev_map)
 # Determine what abbreviation the Excel file uses for TEAM_NAME
 excel_abbrev <- if (TEAM_NAME %in% names(rev_map)) rev_map[[TEAM_NAME]] else TEAM_NAME
 
-# Load trades
-trades_raw <- read_excel(TRADES_FILE, sheet = "Sheet1")
-colnames(trades_raw) <- c("Team", "Players_added", "pA_pos",
-                           "Players_given", "pG_pos",
-                           "Trade_count", "date_of_trade", "notes")
+# Load trades — if the tracker hasn't been supplied yet, still draw the panel
+# with a placeholder note in the moves box (re-run once the file exists)
+HAS_TRADES <- file.exists(TRADES_FILE)
+if (HAS_TRADES) {
+  trades_raw <- read_excel(TRADES_FILE, sheet = "Sheet1")
+  colnames(trades_raw) <- c("Team", "Players_added", "pA_pos",
+                             "Players_given", "pG_pos",
+                             "Trade_count", "date_of_trade", "notes")
 
-# Filter to this team's rows
-team_trades <- trades_raw %>%
-  filter(trimws(Team) == excel_abbrev) %>%
-  arrange(date_of_trade)
+  # Filter to this team's rows
+  team_trades <- trades_raw %>%
+    filter(trimws(Team) == excel_abbrev) %>%
+    arrange(date_of_trade)
+} else {
+  cat(sprintf("%s not found — moves panel will show a placeholder.\n", TRADES_FILE))
+}
 
 # Build bullet lines
 build_moves <- function(trades_df) {
@@ -82,8 +88,12 @@ build_moves <- function(trades_df) {
   return(lines)
 }
 
-DEADLINE_MOVES <- build_moves(team_trades)
-cat(sprintf("Loaded %d trade(s) for %s:\n", nrow(team_trades), TEAM_NAME))
+if (HAS_TRADES) {
+  DEADLINE_MOVES <- build_moves(team_trades)
+  cat(sprintf("Loaded %d trade(s) for %s:\n", nrow(team_trades), TEAM_NAME))
+} else {
+  DEADLINE_MOVES <- "Trade tracker (data/trades_2026.xlsx) not yet added \u2014 moves pending."
+}
 cat(paste0("  ", DEADLINE_MOVES, collapse = "\n"), "\n\n")
 
 # 0. LOAD AND PREPARE FIRST HALF DATA
@@ -190,8 +200,8 @@ add_deadline <- function(p, ymin, ymax) {
 
 # 3. PANEL 1 — CUMULATIVE WINS
 actual_wins_final <- max(second_half$cum_wins)
-proj_wins_final   <- round(max(second_half$proj_cum_wins), 1)
-win_diff          <- actual_wins_final - round(proj_wins_final)
+proj_wins_final   <- round(max(second_half$proj_cum_wins))   # whole wins, matching the standings charts
+win_diff          <- actual_wins_final - proj_wins_final
 diff_label        <- ifelse(win_diff >= 0, paste0("+", win_diff), as.character(win_diff))
 diff_color        <- ifelse(win_diff >= 0, col_actual, col_deadline)
 
@@ -230,8 +240,8 @@ p1_base <- ggplot() +
   labs(
     title    = sprintf("%s — 2026 Full Season: Cumulative Wins", TEAM_NAME),
     subtitle = sprintf(
-      "Second half actual: %d  |  Projected without deadline moves: %.1f  |  Impact: %s wins",
-      actual_wins_final, proj_wins_final, diff_label),
+      "Full-season actual: %d  |  Projected without deadline moves: %d  |  Impact: %s wins",
+      actual_wins_final, as.integer(proj_wins_final), diff_label),
     x = NULL, y = "Cumulative wins"
   ) +
   its_theme +
