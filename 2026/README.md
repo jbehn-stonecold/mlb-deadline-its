@@ -5,7 +5,7 @@ The same modeling approach as [`2025/`](../2025/), rebuilt with a cleaner number
 ## Status
 
 - **Done:** scraping, feature engineering, model training/tuning, post-deadline projections (made Aug 3), and end-of-season validation of those projections.
-- **Pending:** the trade-deadline tracker `data/trades_2026.xlsx` hasn't been added yet. The per-team ITS panels in `model-validation/its-panels/` currently show a placeholder in their "deadline moves" box. Add the tracker and re-run `17_2026_season_validation.R` to fill them in. `12_team_projection_panels.R` also reads it.
+- **Trade tracker:** `data/trades_2026.xlsx` (gitignored with the rest of `data/`) lists the 66 trades made Jul 20 – Aug 3, 2026, the two weeks before the deadline. It uses the same layout as the 2025 tracker. The trade list comes from [MLB Trade Rumors' 2026 trade tracker](https://www.mlbtraderumors.com/2026/08/2026-mlb-trade-tracker.html). Dates, positions and name spellings come from the official MLB Stats API transactions feed, which confirms every player's move and direction. The file's `Sources` sheet records the details and the two corrections made to the MLB Trade Rumors list.
 
 ## 2026 results
 

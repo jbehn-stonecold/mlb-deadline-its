@@ -394,8 +394,11 @@ p_moves <- ggplot() +
   xlim(0, 1) + ylim(0, 1)
 
 # 7. COMBINE WITH PATCHWORK
+# Moves box grows with the number of trades so long lists aren't clipped
+moves_h <- 0.8 + 0.3 * length(DEADLINE_MOVES)
+
 final_plot <- (p1 / (p2 | p3) / p_moves) +
-  plot_layout(heights = c(3, 2, 2, 1.2)) +
+  plot_layout(heights = c(3, 2, moves_h)) +
   plot_annotation(
     caption = paste0(
       "Rolling averages use 5-game windows. Flat lines show second-half averages for actual and projected.\n",
@@ -406,4 +409,4 @@ final_plot <- (p1 / (p2 | p3) / p_moves) +
 
 #8. SAVE
 out_file <- sprintf("../model-validation/%s_2026_its_panel_FINAL.png", TEAM_NAME)
-ggsave(out_file, final_plot, width = 18, height = 12, dpi = 200, bg = "white")
+ggsave(out_file, final_plot, width = 18, height = 10 + 1.4 * moves_h, dpi = 200, bg = "white")
