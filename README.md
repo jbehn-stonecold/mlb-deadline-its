@@ -137,7 +137,6 @@ In 2026 we also published full-season standings on Aug 3. Scored against the fin
 
 ## ⚠️ Limitations
 * **Counterfactual, not causal.** The projection shows how a team's pre-deadline profile would be expected to play out. The gap between that and the actual result includes trades, but also injuries, luck and regression.
-* **Home field isn't modeled yet.** `is_home` was always 0 in the feature data, so neither year's model learned a home-field effect. This will be fixed before the next retrain.
 * **2026 deadline-day games.** The 8 games played on Aug 3, 2026 were missing from the deadline run; placeholder games stood in for them. This moves a published full-season record by at most one win. See [`2026/README.md`](2026/README.md).
 
 ---
